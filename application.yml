@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  h2:
+    console:
+      enabled: true  # Enables H2 console at /h2-console in web apps
+
+
+  kafka:
+    bootstrap-servers: localhost:9092  # Change this to your Kafka server address
+    consumer:
+      group-id: test-group
+      auto-offset-reset: earliest
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    template:
+      default-topic: ${general.kafka-topic}  # Referenced in your error
+
+general:
+  kafka-topic: forage-midas
