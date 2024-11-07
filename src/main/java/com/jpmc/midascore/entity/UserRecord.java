@@ -1,5 +1,7 @@
 package com.jpmc.midascore.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
@@ -43,4 +45,11 @@ public class UserRecord {
     public void setBalance(float balance) {
         this.balance = balance;
     }
+
+    @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY, orphanRemoval = false)
+    private List<TransactionRecord> outgoingTransactions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "recipient", fetch = FetchType.LAZY, orphanRemoval = false)
+    private List<TransactionRecord> incomingTransactions = new ArrayList<>();
+
 }
