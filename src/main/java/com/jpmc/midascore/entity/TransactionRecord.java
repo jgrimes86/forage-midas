@@ -20,6 +20,9 @@ public class TransactionRecord {
     @Column(nullable = false)
     private float amount;
 
+    @Column()
+    private float incentive;
+
     public void setSender(UserRecord sender) {
         this.sender = sender;
     }
@@ -42,6 +45,14 @@ public class TransactionRecord {
 
     public float getAmount() {
         return amount;
+    }
+
+    public void setIncentive(float incentive) {
+        this.incentive = incentive;
+    }
+
+    public float getIncentive() {
+        return incentive;
     }
 
 }
